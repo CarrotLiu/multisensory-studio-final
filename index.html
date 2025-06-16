@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audio Button App</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      position: relative;
+      height: 100vh;
+      background: #f0f0f0;
+    }
+    #status {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+    .center-buttons {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .button {
+      padding: 20px 40px;
+      font-size: 24px;
+      border: none;
+      border-radius: 8px;
+      margin: 10px;
+      color: white;
+    }
+    .green { background-color: green; }
+    .red { background-color: red; }
+    .blue { background-color: blue; font-size: 16px; padding: 10px 20px; }
+    .yellow { background-color: orange; font-size: 16px; padding: 10px 20px; }
+    .corner-buttons {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="status">
+    <div id="modeDisplay">Mode: 1</div>
+    <div id="materialDisplay">Material: leather</div>
+  </div>
+
+  <div class="center-buttons">
+    <button class="button green" onclick="handleCorrect()">Correct</button>
+    <button class="button red" onclick="handleWrong()">Wrong</button>
+  </div>
+
+  <div class="corner-buttons">
+    <button class="button blue" onclick="switchMode()">Switch Mode</button>
+    <button class="button yellow" onclick="switchMaterial()">Switch Material</button>
+  </div>
+
+  <audio id="audio"></audio>
+
+  <script>
+    let mode = 1;
+    let material = "leather";
+
+    const audioFiles = {
+      correct: "/audio/correct.mp3",
+      wrong: "/audio/wrong.mp3",
+      leather: "/audio/leather.mp3",
+      chinese: "/audio/chinese.mp3",
+      wood: "/audio/wood.mp3",
+      metal: "/audio/metal.mp3",
+      glass: "/audio/glass.mp3",
+    };
+
+    function playAudio(file) {
+      const audio = document.getElementById('audio');
+      audio.src = file;
+      audio.play();
+    }
+
+    function handleCorrect() {
+      if (mode === 1) {
+        playAudio(audioFiles.correct);
+      } else {
+        if (material === "leather") {
+          playAudio(audioFiles.leather);
+        } else {
+          playAudio(audioFiles.chinese);
+        }
+      }
+    }
+
+    function handleWrong() {
+      const options = (material === "leather") ?
+        [audioFiles.wood, audioFiles.metal, audioFiles.glass, audioFiles.chinese] :
+        [audioFiles.leather, audioFiles.metal, audioFiles.glass, audioFiles.wood];
+      if (mode === 1) {
+        playAudio(audioFiles.wrong);
+      } else {
+        const randomFile = options[Math.floor(Math.random() * options.length)];
+        playAudio(randomFile);
+      }
+    }
+
+    function switchMode() {
+      mode = mode === 1 ? 2 : 1;
+      document.getElementById("modeDisplay").innerText = `Mode: ${mode}`;
+    }
+
+    function switchMaterial() {
+      material = material === "leather" ? "white" : "leather";
+      document.getElementById("materialDisplay").innerText = `Material: ${material}`;
+    }
+  </script>
+</body>
+</html>
