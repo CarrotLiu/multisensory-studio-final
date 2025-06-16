@@ -78,6 +78,7 @@ const audioFiles = {
     function playAudio(file) {
       const audio = document.getElementById('audio');
       audio.src = file;
+      audio.volume = 1.0; // max volume
       audio.play();
     }
 
@@ -86,6 +87,7 @@ const audioFiles = {
         playAudio(audioFiles.correct);
       } else {
         if (material === "leather") {
+          
           playAudio(audioFiles.leather);
         } else {
           playAudio(audioFiles.chinese);
