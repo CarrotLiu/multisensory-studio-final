@@ -64,15 +64,16 @@
     let mode = 1;
     let material = "leather";
 
-    const audioFiles = {
-  correct: "https://raw.githubusercontent.com/CarrotLiu/multisensory-studio-final/main/audio/correct.mp3",
-  wrong: "https://raw.githubusercontent.com/CarrotLiu/multisensory-studio-final/main/audio/wrong.mp3",
-  leather: "https://raw.githubusercontent.com/CarrotLiu/multisensory-studio-final/main/audio/leather.mp3",
-  chinese: "https://raw.githubusercontent.com/CarrotLiu/multisensory-studio-final/main/audio/chinese.mp3",
-  wood: "https://raw.githubusercontent.com/CarrotLiu/multisensory-studio-final/main/audio/wood.mp3",
-  metal: "https://raw.githubusercontent.com/CarrotLiu/multisensory-studio-final/main/audio/metal.mp3",
-  glass: "https://raw.githubusercontent.com/CarrotLiu/multisensory-studio-final/main/audio/glass.mp3",
-};
+    const base = "https://CarrotLiu.github.io/multisensory-studio-final/audio/";
+const audioFiles = {
+  correct: base + "correct.mp3",
+  wrong:   base + "wrong.mp3",
+  leather: base + "leather.mp3",
+  chinese: base + "chinese.mp3",
+  wood:    base + "wood.mp3",
+  metal:   base + "metal.mp3",
+  glass:   base + "glass.mp3",
+}; 
 
     function playAudio(file) {
       const audio = document.getElementById('audio');
